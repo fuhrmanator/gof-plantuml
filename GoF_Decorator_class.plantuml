@@ -1,0 +1,50 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+
+skinparam noteFontName Courier New
+
+hide empty members
+interface Component {
+  {abstract} Operation()
+}
+
+class ConcreteComponent implements Component {
+  Operation()
+}
+
+abstract class Decorator implements Component{
+  Operation()
+}
+
+'class " " as Hidden
+'Decorator -u- Hidden
+'Hidden -u- Component
+
+
+note right of Decorator::Operation()
+component->Operation() 
+end note
+
+Decorator o-u-> Component : \ncomponent 
+
+'Decorator .u.|> Component
+
+class ConcreteDecoratorB implements Decorator {
+  addedState
+  Operation()
+}
+class ConcreteDecoratorA implements Decorator {
+  addedState
+  Operation()
+}
+note right of ConcreteDecoratorB::Operation()
+Decorator::Operation();
+AddedBehavior();
+end note
+
+' alignment hack
+ConcreteDecoratorA -[#transparent]up- ConcreteComponent
+@enduml

@@ -1,0 +1,40 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+interface Subject {
+{abstract} Request()
+…()
+}
+
+class RealSubject implements Subject {
+Request()
+…()
+}
+
+class Proxy implements Subject {
+Request()
+…()
+}
+
+Proxy "realSubject" -l-> RealSubject : "                      "
+
+note right of Proxy::Request
+…
+realSubject->Request();
+…
+end note
+
+hide stereotype
+skinparam {
+  ClassBorderColor<<Foo>> #grey
+  ClassFontColor<<Foo>> #grey
+}
+class "Client" as Client<<Foo>> {
+}
+Client -[#grey]right-> Subject
+@enduml

@@ -1,0 +1,44 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+interface Aggregate {
+  {abstract} CreateIterator()
+}
+
+interface Iterator {
+  {abstract} First()
+  {abstract} Next()
+  {abstract} IsDone()
+  {abstract} CurrentItem()
+}
+
+class ConcreteAggregate implements Aggregate {
+  CreateIterator()
+}
+
+class ConcreteIterator implements Iterator {
+}
+
+note left of ConcreteAggregate::CreateIterator
+return new 
+  ConcreteIterator(this)
+end note
+
+ConcreteAggregate <- ConcreteIterator
+ConcreteAggregate .> ConcreteIterator
+
+hide stereotype
+skinparam {
+  ClassBorderColor<<Grey>> #grey
+  ClassFontColor<<Grey>> #grey
+}
+class "Client" as Client<<Grey>> {
+}
+Client -[#grey]left-> Aggregate
+Client -[#grey]right-> Iterator
+
+@enduml

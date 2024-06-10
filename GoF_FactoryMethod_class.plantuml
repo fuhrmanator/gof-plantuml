@@ -1,0 +1,28 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+
+skinparam noteFontName Courier New
+
+hide empty members
+interface Creator {
+  {abstract} FactoryMethod()
+  AnOperation()
+}
+note right of Creator::AnOperation()
+//...//
+product = FactoryMethod()
+//...//
+end note
+class ConcreteCreator implements Creator {
+  FactoryMethod()
+}
+note right of ConcreteCreator::FactoryMethod()
+return new ConcreteProduct
+end note
+interface Product
+abstract class ConcreteProduct implements Product
+ConcreteCreator .left.> ConcreteProduct
+@enduml

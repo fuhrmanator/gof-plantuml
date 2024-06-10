@@ -1,0 +1,40 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+
+skinparam noteFontName Courier New
+
+hide empty members
+interface Component {
+  {abstract} Operation()
+  {abstract} Add(Component)
+  {abstract} Remove(Component)
+  {abstract} GetChild(int)
+}
+
+class Leaf implements Component {
+  Operation()
+}
+
+class D<<hidden>>
+Component -[#transparent]d- D
+
+class Composite {
+  Operation()
+  Add(Component)
+  Remove(component)
+  GetChild(int)
+}
+
+note right of Composite::Operation
+forall g in children
+  g.Operation();
+end note
+
+Composite "children" o-u-> Component
+
+Composite .u.|> Component
+Client -> Component
+@enduml

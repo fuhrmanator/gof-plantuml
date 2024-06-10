@@ -1,0 +1,38 @@
+﻿@startuml
+skinparam style strictuml
+skinparam defaultFontName Arial
+skinparam backgroundColor transparent
+skinparam packagebackgroundColor transparent
+skinparam noteFontName Courier New
+
+hide empty members
+left to right direction
+object ":Client"  as c1
+object ":Client" as c2
+object ":FlyweightFactory" as fwf {
+  flyweights
+}
+
+skinparam package {
+  borderColor gray
+  fontColor gray
+  backgroundColor transparent
+}
+
+package "//flyweight//\l//pool//" {
+  object ":ConcreteFlyweight" as fw1 {
+    intrinsicState
+  }
+  object ":ConcreteFlyweight" as fw2 {
+    intrinsicState
+  }
+}
+
+c1 -[hidden]- c2
+c1 -r-> fw1
+c2 -r-> fw1
+c2 -r-> fw2
+fwf -d-> fw1
+fwf -d-> fw2
+fw1 -[hidden]- fw2
+@enduml

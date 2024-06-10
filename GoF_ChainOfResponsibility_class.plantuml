@@ -1,0 +1,24 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+interface Handler {
+  {abstract} HandleRequest()
+}
+
+Handler "successor" -up-> Handler 
+
+class ConcreteHandler1 implements Handler {
+  HandleRequest()
+}
+
+class ConcreteHandler2 implements Handler {
+  HandleRequest()
+}
+
+Client -right-> Handler
+@enduml

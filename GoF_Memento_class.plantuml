@@ -1,0 +1,29 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+
+class Originator {
+state
+SetMemento(m : Memento)
+CreateMemento() : Memento
+}
+note right of Originator::SetMemento
+state = m -> GetState()
+end note
+note right of Originator::CreateMemento
+return new Memento(state)
+end note
+class Memento {
+state
+GetState()
+SetState()
+}
+Originator .down.> Memento
+Caretaker o-right-> Memento : memento
+
+@enduml

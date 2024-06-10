@@ -1,0 +1,40 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+' hack for bug
+skinparam lifelineStrategy nosolid
+
+participant ":Caretaker" as c
+participant ":Originator" as o
+participant "aMemento:\nMemento" as m
+activate c
+c -> o : aMemento = \nCreateMemento()
+activate o
+create m
+o --> m : create
+activate m
+'hack to fix activation
+m -[#transparent]-> 
+deactivate m
+
+o -> m : SetState()
+activate m
+deactivate m
+deactivate o
+deactivate c
+... 
+'hack for activate
+-[#transparent]-> c 
+activate c
+c -> o : SetMemento(aMemento)
+activate o
+o -> m : GetState()
+activate m
+deactivate m
+deactivate o
+deactivate c
+
+@enduml

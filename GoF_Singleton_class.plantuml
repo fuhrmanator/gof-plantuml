@@ -1,0 +1,20 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+
+skinparam noteFontName Courier New
+
+hide empty members
+class Singleton {
+  {static} uniqueInstance
+  singletonData
+  {static} Instance()
+  SingletonOperation()
+  GetSingletonData()
+}
+note right of Singleton::Instance()
+return uniqueInstance
+end note
+@enduml

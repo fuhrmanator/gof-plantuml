@@ -1,0 +1,20 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+object "aClient" as c {
+ aHandler
+}
+object "aConcreteHandler" as p {
+ successor
+}
+object "aConcreteHandler" as s {
+ successor
+}
+c -> p
+p -> s
+@enduml

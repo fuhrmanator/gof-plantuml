@@ -1,0 +1,33 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam packagebackgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+class "Facade" as f #AAFFAA
+package "subsystem classes" as p {
+  skinparam groupInheritance 2
+  skinparam packageBorderColor #gray
+  skinparam packageFontColor #gray
+  class "              " as c1
+  class "              " as c2
+  class "              " as c3
+  class "              " as c4
+  class "              " as c5
+  class "              " as c6
+  class "              " as c7
+  c2 -u-|> c1
+  c1 -- c3
+  c5 <|-d- c6
+  c5 <|-d- c7
+  'c6 -l[#transparent]- c3
+}
+f -d[#green,bold]-> c2
+f -d[#green,bold]-> c3
+f -d[#green,bold]-> c4
+f -d[#green,bold]-> c6
+'f -d[#transparent]- p 
+@enduml

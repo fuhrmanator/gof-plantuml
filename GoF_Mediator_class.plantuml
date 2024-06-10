@@ -1,0 +1,28 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+hide empty members
+
+interface Mediator {
+}
+
+interface Colleague {
+}
+
+Colleague "mediator" -left-> Mediator
+
+class "Concrete\nMediator" as CM implements Mediator {
+}
+
+class "Concrete\nColleague1" as CC1 implements Colleague {
+}
+class "Concrete\nColleague2" as CC2 implements Colleague {
+}
+
+CM -> CC1
+CM -> CC2
+
+@enduml

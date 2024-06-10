@@ -1,0 +1,25 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+'skinparam noteFontName Courier New
+skinparam packageStyle rect
+' hack for bug
+skinparam lifelineStrategy nosolid
+
+participant ":Client" as c
+participant ":ConcreteClass" as cc1
+
+c -> cc1 : TemplateMethod()
+activate cc1
+cc1 -> cc1 : PrimitiveOperation1()
+note right: //Opération polymorphe//
+activate cc1 #FFBBBB
+deactivate cc1
+cc1 -> cc1 : PrimitiveOperation2()
+note right: //Opération polymorphe//
+activate cc1 #FFBBBB
+deactivate cc1
+deactivate cc1
+
+@enduml

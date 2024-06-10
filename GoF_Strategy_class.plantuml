@@ -1,0 +1,29 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+class Context {
+  ContextInterface()
+}
+
+Context "strategy" o-right-> Strategy : "               "
+
+interface Strategy {
+ {abstract}AlgorithmInterface()
+}
+
+class ConcreteStrategyA implements Strategy {
+  AlgorithmInterface()
+}
+class ConcreteStrategyB implements Strategy {
+  AlgorithmInterface()
+}
+class ConcreteStrategyC implements Strategy {
+  AlgorithmInterface()
+}
+
+@enduml

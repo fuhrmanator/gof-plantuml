@@ -1,0 +1,42 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+interface Flyweight {
+  {abstract} Operation(extrinsicState)
+}
+
+class ConcreteFlyweight implements Flyweight {
+  intrinsicState
+  Operation(extrinsicState)
+}
+
+class UnsharedConcreteFlyweight implements Flyweight {
+  allState
+  Operation(extrinsicState)
+}
+
+class FlyweightFactory {
+  GetFlyweight(key)
+}
+
+FlyweightFactory "flyweights" o-> Flyweight
+
+note right of FlyweightFactory::GetFlyweight(key)
+if (flyweight[key] exists) {
+  return existing flyweight;
+} else {
+  create new flyweight;
+  add it to pool of flyweights;
+  return the new flyweight;
+}
+end note
+
+Client -> ConcreteFlyweight
+Client -> UnsharedConcreteFlyweight
+Client -up-> FlyweightFactory
+@enduml

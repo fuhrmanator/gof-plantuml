@@ -1,0 +1,34 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+' hack for bug
+skinparam lifelineStrategy nosolid
+
+participant ":ObjectStructure" as o
+participant ":ConcreteElementA" as ca
+participant ":ConcreteElementB" as cb
+participant ":ConcreteVisitor" as v
+activate o
+o -> ca : Accept(:Visitor)
+activate ca
+ca -> v : VisitConcreteElementA(:ConcreteElementA)
+activate v
+v -> ca : OperationA()
+activate ca
+deactivate ca
+deactivate v
+deactivate ca
+o -> cb : Accept(:Visitor)
+activate cb
+cb -> v : VisitConcreteElementB(:ConcreteElementB)
+activate v
+v -> cb : OperationB()
+activate cb
+deactivate cb
+deactivate v
+deactivate cb
+
+@enduml

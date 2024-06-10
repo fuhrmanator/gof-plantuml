@@ -1,0 +1,39 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+
+skinparam noteFontName Courier New
+
+hide empty members
+abstract class Abstraction {
+  Operation()
+}
+note left of Abstraction::Operation()
+imp->OperationImp();
+end note
+class RefinedAbstraction implements Abstraction {
+}
+
+interface Implementor {
+  {abstract} OperationImp()
+}
+class ConcreteImplementorA implements Implementor {
+  OperationImp()
+}
+class ConcreteImplementorB implements Implementor {
+  OperationImp()
+}
+
+Abstraction "imp" o-> Implementor
+
+hide stereotype
+skinparam {
+  ClassBorderColor<<Foo>> #grey
+  ClassFontColor<<Foo>> #grey
+}
+class "Client" as Client<<Foo>> {
+}
+Client -[#grey]-> Abstraction
+@enduml

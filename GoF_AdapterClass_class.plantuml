@@ -1,0 +1,28 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+
+skinparam noteFontName Courier New
+
+hide empty members
+interface Target {
+  {abstract} Request()
+}
+class Adapter implements Target {
+  Request()
+}
+note right of Adapter::Request
+SpecificRequest()
+end note
+class Adaptee {
+  SpecificRequest()
+}
+
+Adaptee <|-down- Adapter : (implementation)
+
+class Client {
+}
+Client -r-> Target
+@enduml

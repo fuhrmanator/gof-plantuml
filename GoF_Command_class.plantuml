@@ -1,0 +1,26 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+class Receiver {
+  Action()
+}
+interface Command {
+  {abstract} Execute()
+}
+class ConcreteCommand implements Command {
+  state
+  Execute()
+}
+note right of ConcreteCommand::Execute
+receiver->Action();
+end note
+Client --> Receiver
+Client ..> ConcreteCommand
+Invoker o-> Command
+ConcreteCommand -left-> Receiver
+@enduml

@@ -1,0 +1,36 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty methods
+object ":Colleague" as c1 {
+ mediator
+}
+object ":Colleague" as c2 {
+ mediator
+}
+object ":Colleague" as c3 {
+ mediator
+}
+object ":Colleague" as c4 {
+ mediator
+}
+object ":Colleague" as c5 {
+ mediator
+}
+object ":ConcreteMediator" as m {
+ 
+}
+c1 -d-> m
+c2 -d-> m
+c3 -left-> m
+m -right-> c3
+c4 -right-> m
+m -left-> c4
+c5 -u-> m
+m -d-> c5
+
+@enduml

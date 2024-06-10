@@ -1,0 +1,31 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+' hack for bug
+skinparam lifelineStrategy nosolid
+
+participant ":ConcreteSubject" as s
+participant ":ConcreteObserver" as o1
+participant ":ConcreteObserver" as o2
+
+o1 -> s : SetState()
+activate s
+s -> s : Notify()
+activate s #FFBBBB
+s -> o1 : Update()
+activate o1
+o1 -> s : GetState()
+activate s
+deactivate s
+deactivate o1
+s -> o2 : Update()
+activate o2
+o2 -> s : GetState()
+activate s
+deactivate s
+deactivate o2
+
+@enduml

@@ -1,0 +1,74 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam packageBackgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+left to right direction
+
+hide stereotype
+skinparam {
+  ClassBorderColor<<Grey>> #grey
+  ClassFontColor<<Grey>> #grey
+}
+class "Client" as Client<<Grey>> {
+}
+
+package v #transparent {
+interface Visitor {
+  {abstract} VisitConcreteElementA(ConcreteElementA)
+  {abstract} VisitConcreteElementB(ConcreteElementB)
+}
+
+class ConcreteVisitor2 implements Visitor {
+VisitConcreteElementA(ConcreteElementA)
+VisitConcreteElementB(ConcreteElementB)
+}
+
+class ConcreteVisitor1 implements Visitor {
+VisitConcreteElementA(ConcreteElementA)
+VisitConcreteElementB(ConcreteElementB)
+}
+
+}
+
+Client -[#grey]r-> Visitor
+
+package o #transparent {
+ObjectStructure -l-> Element
+
+interface Element {
+{abstract} Accept(Visitor)
+}
+
+class ConcreteElementA implements Element {
+OperationA()
+Accept(Visitor v)
+}
+class ConcreteElementB implements Element {
+OperationB()
+Accept(Visitor v)
+}
+
+note as na
+v->VisitConcreteElementA(this)
+end note
+
+note as nb
+v->VisitConcreteElementB(this)
+end note
+}
+na .r. ConcreteElementA
+nb .r. ConcreteElementB
+Client -[#grey]down-> ObjectStructure
+
+' layout tricks
+'v -[hidden]- o
+skinparam package {
+ borderColor transparent
+ fontColor transparent
+}
+@enduml

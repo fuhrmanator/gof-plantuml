@@ -1,0 +1,32 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+
+skinparam noteFontName Courier New
+
+hide empty members
+interface Prototype {
+  {abstract} Clone()
+}
+class ConcreteProtptye1 implements Prototype {
+  Clone()
+}
+note bottom of ConcreteProtptye1
+return copy of self
+end note
+class ConcreteProtptye2 implements Prototype {
+  Clone()
+}
+note bottom of ConcreteProtptye2
+return copy of self
+end note
+class Client {
+  Operation()
+}
+note bottom of Client
+p = prototype -> Clone()
+end note
+Client "prototype" -right-> Prototype
+@enduml

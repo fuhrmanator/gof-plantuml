@@ -1,0 +1,48 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+abstract class Subject {
+Attach(Observer)
+Detach(Observer)
+Notify()
+}
+
+note left of Subject::Notify
+for all o in observers {
+  o->Update() }
+end note
+
+interface Observer {
+ {abstract} Update()
+}
+
+Subject "observers" -> Observer : "          "
+
+class ConcreteSubject extends Subject {
+  GetState()
+  SetState()
+  subjectState
+}
+
+note left of ConcreteSubject::GetState()
+return subjectState
+end note
+
+class "ConcreteObserver" as co implements Observer {
+  Update()
+  observerState
+}
+
+note right of co::Update
+observerState =
+  subject->GetState()
+end note
+
+co "subject" -left-> ConcreteSubject : "                     "
+
+@enduml

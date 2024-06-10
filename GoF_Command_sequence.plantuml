@@ -1,0 +1,34 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+' broken lifeline
+skinparam lifelineStrategy nosolid
+
+participant "aReceiver:\nReceiver" as r
+participant "aClient:\nClient" as c
+participant "aCommand:\nCommand" as co
+participant "anInvoker:\nInvoker" as i
+create co
+activate c
+activate co
+c --> co : new Command(aReceiver)
+co -[#transparent]-> 
+deactivate co
+c -> i : StoreCommand(aCommand)
+activate i
+deactivate i
+deactivate c
+...
+-[#transparent]-> i
+activate i
+i -> co : Execute()
+activate co
+co -> r : Action()
+activate r
+deactivate r
+deactivate co
+deactivate i
+@enduml

@@ -1,0 +1,19 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+participant aClient as c
+participant aDirector as d
+participant aConcreteBuilder as cb
+
+create cb
+c --> cb : create
+create d
+c --> d : create
+c -> d : Construct()
+d -> cb : BuildPartA() 
+d -> cb : BuildPartB() 
+d -> cb : BuildPartC() 
+c -> cb : GetResult()
+@enduml

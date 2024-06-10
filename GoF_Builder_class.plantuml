@@ -1,0 +1,31 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam style strictuml
+hide empty members
+interface "Builder" as B {
+  {abstract} BuildPart()
+}
+class "ConcreteBuilder" as CB
+class CB implements B {
+  BuildPart()
+  GetResult()
+}
+class Director {
+  Construct()
+}
+Director "builder" o-> B
+note bottom of Director
+//for all objects in structure {//
+//  builder -> BuildPart()//
+//}//
+end note
+CB .> Product
+' layout tricks
+'A -[hidden]- B 
+skinparam package {
+ borderColor transparent
+ fontColor transparent
+}
+@enduml

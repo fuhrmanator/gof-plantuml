@@ -1,0 +1,23 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+hide empty members
+class Client
+class Context
+Client -up-> Context
+Client -> AbstractExpression
+interface AbstractExpression {
+  {abstract} Interpret(Context)
+}
+class TerminalExpression implements AbstractExpression {
+  Interpret(Context)
+}
+class NonterminalExpression implements AbstractExpression {
+  Interpret(Context)
+}
+
+NonterminalExpression o-up-> AbstractExpression 
+@enduml

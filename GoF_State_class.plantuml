@@ -1,0 +1,31 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+class Context {
+  Request()
+}
+
+Context "state" o-right-> State
+
+note bottom of Context
+state->Handle()
+end note
+
+interface State {
+ {abstract}Handle()
+}
+
+class ConcreteStateA implements State {
+  Handle()
+}
+class ConcreteStateB implements State {
+  Handle()
+}
+class "…" implements State
+
+@enduml

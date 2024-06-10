@@ -1,0 +1,19 @@
+﻿@startuml
+skinparam style strictuml
+skinparam backgroundColor transparent
+skinparam defaultFontName Arial
+skinparam noteFontName Courier New
+skinparam packageStyle rect
+
+hide empty members
+object "aClient" as c {
+ subject
+}
+object "aProxy" as p {
+ realSubject
+}
+object "aRealSubject" as s {
+}
+c -> p
+p -> s
+@enduml
